@@ -1,0 +1,437 @@
+:root {
+    --gold: #ffc928;
+    --green: #00ed85;
+    --red: #ff294e;
+    --background: #050709;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--white);
+    background-color: var(--background);
+    overflow-x: hidden;
+}
+
+/* Fondo fijo (imagen + degradado), estable en iOS */
+.background-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-color: var(--background);
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.58),
+            rgba(0, 0, 0, 0.9) 70%,
+            #020405
+        ),
+        url("fondo-trading.webp");
+    background-size: cover, cover;
+    background-position: center top, center top;
+    background-repeat: no-repeat, no-repeat;
+}
+
+@media (max-width: 720px) {
+    .background-overlay {
+        background-image:
+            linear-gradient(
+                180deg,
+                rgba(0, 0, 0, 0.58),
+                rgba(0, 0, 0, 0.9) 70%,
+                #020405
+            ),
+            url("fondo-trading-sm.webp");
+    }
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+    padding: 55px 25px calc(35px + env(safe-area-inset-bottom));
+}
+
+/* PROFILE */
+
+.profile {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.logo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 112px;
+    height: 112px;
+    margin: 0 auto 15px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    background: #000;
+    overflow: hidden;
+    box-shadow:
+        0 0 22px rgba(255, 201, 40, .38),
+        0 0 0 6px rgba(255, 201, 40, .06);
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(1.07) saturate(1.05) contrast(1.03);
+}
+
+.gold {
+    color: var(--gold);
+}
+
+.brand {
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: clamp(34px, 7vw, 48px);
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin-bottom: 12px;
+}
+
+h1 span {
+    color: var(--gold);
+}
+
+.profession {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #eee;
+}
+
+.profession i {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin: 0 8px 2px;
+    border-radius: 50%;
+    background: var(--gold);
+}
+
+.slogan {
+    margin-top: 25px;
+    font-size: clamp(17px, 4vw, 23px);
+    font-style: italic;
+    font-weight: 600;
+}
+
+.slogan strong {
+    color: var(--green);
+}
+
+/* SOCIAL BUTTONS */
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.social {
+    --glow: #fff;
+
+    display: flex;
+    align-items: center;
+    min-height: 77px;
+    padding: 12px 19px;
+    gap: 17px;
+    color: white;
+    text-decoration: none;
+    border: 1.5px solid var(--glow);
+    border-radius: 24px;
+    background: rgba(0, 0, 0, .86);
+    box-shadow:
+        0 0 12px rgba(255, 255, 255, .18),
+        0 0 12px color-mix(in srgb, var(--glow), transparent 55%),
+        inset 0 0 15px rgba(255, 255, 255, .025);
+    transition: transform .3s ease, box-shadow .3s ease;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.social:hover,
+.social:focus-visible {
+    transform: translateY(-4px) scale(1.015);
+    box-shadow:
+        0 0 25px color-mix(in srgb, var(--glow), transparent 25%),
+        inset 0 0 20px rgba(255, 255, 255, .07);
+}
+
+.social:active {
+    transform: translateY(-1px) scale(.995);
+}
+
+.social:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 3px;
+}
+
+.ic {
+    width: 1em;
+    height: 1em;
+    display: block;
+    flex-shrink: 0;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, .08);
+    font-size: 28px;
+    color: var(--glow);
+}
+
+.social-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+}
+
+.social-info strong {
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.social-info span {
+    font-size: 13px;
+    color: #d5d5d5;
+    overflow-wrap: anywhere;
+}
+
+.social-info small {
+    width: fit-content;
+    padding: 3px 8px;
+    border: 1px solid var(--gold);
+    border-radius: 20px;
+    color: var(--gold);
+    font-size: 10px;
+}
+
+.arrow {
+    font-size: 15px;
+    color: white;
+    transition: transform .3s ease;
+}
+
+.social:hover .arrow {
+    transform: translateX(3px);
+}
+
+/* BRAND COLORS */
+
+.instagram { --glow: #ff35c9; }
+.threads { --glow: #eeeeee; }
+.facebook { --glow: #1877ff; }
+.whatsapp { --glow: #00ed85; }
+.website { --glow: #ffca28; }
+.email { --glow: #b52aff; }
+
+/* SERVICES */
+
+.services {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    margin: 38px 0 28px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255, 201, 40, .4);
+    border-bottom: 1px solid rgba(255, 201, 40, .4);
+}
+
+.service {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-align: center;
+    padding: 5px;
+    border-right: 1px solid rgba(255, 201, 40, .6);
+}
+
+.service:last-child {
+    border-right: none;
+}
+
+.service .ic {
+    font-size: 27px;
+    color: var(--gold);
+    transition: transform .3s;
+}
+
+.service:hover .ic {
+    transform: scale(1.2);
+}
+
+.service span {
+    font-size: clamp(9.5px, 2.4vw, 11px);
+    line-height: 1.35;
+    font-weight: 700;
+    letter-spacing: .2px;
+}
+
+/* WARNING */
+
+.risk-warning {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 10px;
+    border: 1px solid var(--gold);
+    border-radius: 13px;
+    background: rgba(0, 0, 0, .8);
+    color: white;
+    font-size: 12px;
+    text-align: center;
+}
+
+.risk-warning .ic {
+    color: var(--gold);
+    font-size: 19px;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    margin-top: 35px;
+}
+
+footer p {
+    font-size: clamp(24px, 6vw, 35px);
+    font-weight: 800;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+footer p span {
+    color: var(--gold);
+}
+
+footer small {
+    font-size: 10px;
+    color: #c4c4c4;
+    letter-spacing: 1px;
+}
+
+/* ANIMATIONS */
+
+@keyframes entrance {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile,
+.social,
+.services,
+.risk-warning,
+footer {
+    animation: entrance .8s ease both;
+}
+
+.social:nth-child(2) { animation-delay: .1s; }
+.social:nth-child(3) { animation-delay: .2s; }
+.social:nth-child(4) { animation-delay: .3s; }
+.social:nth-child(5) { animation-delay: .4s; }
+.social:nth-child(6) { animation-delay: .5s; }
+
+/* RESPONSIVE */
+
+@media (max-width: 480px) {
+
+    .container {
+        padding: 40px 16px calc(25px + env(safe-area-inset-bottom));
+    }
+
+    .logo {
+        width: 95px;
+        height: 95px;
+        font-size: 45px;
+    }
+
+    .social {
+        min-height: 69px;
+        padding: 10px 13px;
+        gap: 12px;
+        border-radius: 19px;
+    }
+
+    .social-icon {
+        width: 43px;
+        height: 43px;
+        font-size: 24px;
+    }
+
+    .social-info strong {
+        font-size: 14px;
+    }
+
+    .social-info span {
+        font-size: 11px;
+    }
+
+    .services {
+        margin-top: 28px;
+    }
+
+    .service {
+        padding: 3px 1px;
+    }
+
+    .service .ic {
+        font-size: 22px;
+    }
+
+    .service span {
+        font-size: 9px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
